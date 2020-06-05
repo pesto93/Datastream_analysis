@@ -57,7 +57,7 @@ def stdout(date: str, ip: str, code: int) -> dict:
 
 def log_stream1(arg1: dict, arg2: list):
 	print('Starting Stream 1')
-	for i in range(100000):
+	for i in range(10000):
 		ip: str = form_ip(i, 191, 256, 219, 250)
 		date: str = form_date(i, 1557824751)
 		code: int = int((i * 55 / 6 % 4 + 2) * 100 + (i * 19 % 4))
@@ -69,7 +69,7 @@ def log_stream1(arg1: dict, arg2: list):
 
 def log_stream2(arg1: dict, arg2: list):
 	print('Starting stream 2')
-	for i in range(100000):
+	for i in range(1000):
 		ip: str = form_ip(i, 19, 256, 37, 250)
 		date: str = form_date(i, 1420063200, 2)
 		code: int = int((i * 8 / 6 % 4 + 2) * 100 + (i * 13 % 4))

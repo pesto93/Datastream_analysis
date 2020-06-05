@@ -32,5 +32,4 @@ def main():
 if __name__ == '__main__':
 	visitors_dict = main()
 	for i in visitors_dict:
-		print(i, visitors_dict[i])
-
+		print(f"Hours: {i}, uniq_value : {len(set(visitors_dict[i]))}, Total Value : {len(visitors_dict[i])}")
