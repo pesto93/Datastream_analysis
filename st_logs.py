@@ -3,6 +3,7 @@
 
 from datetime import datetime
 from typing import Optional
+from tqdm import tqdm
 from utils import log_set
 
 
@@ -13,9 +14,9 @@ def form_ip(
 		y1: int,
 		y2: int
 ) -> str:
-	part1: int = i * x1 % x2
-	part2: int = i * y1 % y2
-	return f"10.0.{part1}.{part2}"
+	# part1: int = i * x1 % x2
+	# part2: int = i * y1 % y2
+	return f"10.0.{i * x1 % x2}.{i * y1 % y2}"
 
 
 def form_date(
@@ -31,8 +32,11 @@ def form_date(
 
 def error_status_code(logs: dict) -> tuple:
 	if int(str(logs.get('status_code'))[:1]) == 5:
-		date = datetime.strptime(logs.get('time'), '%Y-%m-%d %H:%M:%S')
-		return str(date.date()) + '_' + logs.get('ip'), str(date.hour)
+		# date = datetime.strptime(logs.get('time'), '%Y-%m-%d %H:%M:%S')
+		return (
+			f"{str(datetime.strptime(logs.get('time'), '%Y-%m-%d %H:%M:%S').date())}_{logs.get('ip')}",
+			f"{str(datetime.strptime(logs.get('time'), '%Y-%m-%d %H:%M:%S').hour)}"
+		)
 
 
 def errored_user_logging(
@@ -41,7 +45,7 @@ def errored_user_logging(
 		visitors: dict,
 		hour_list: list
 ):
-	log_set.info(fr"/!!\ Flagged IP ----> Date : {ip.split('_')[0]}, IP : {ip.split('_')[1]}, Hour : {hour} ")
+	# log_set.info(fr"/!!\ Flagged IP ----> Date : {ip.split('_')[0]}, IP : {ip.split('_')[1]}, Hour : {hour} ")
 	if hour not in hour_list:
 		hour_list.append(hour)
 		visitors[hour] = []
@@ -49,15 +53,18 @@ def errored_user_logging(
 	return visitors
 
 
-def stdout(date: str, ip: str, code: int) -> dict:
-	dict_log = {"time": date, "ip": ip, "status_code": code}
-	print(dict_log)
-	return dict_log
+def stdout(
+		date: str,
+		ip: str,
+		code: int
+) -> dict:
+	# log_set.info('"time": {}, "ip": {}, "status_code": {}'.format(date, ip, code))
+	return {"time": date, "ip": ip, "status_code": code}
 
 
 def log_stream1(arg1: dict, arg2: list):
 	print('Starting Stream 1')
-	for i in range(10000):
+	for i in tqdm(range(1000000), desc="First Data Stream --> "):
 		ip: str = form_ip(i, 191, 256, 219, 250)
 		date: str = form_date(i, 1557824751)
 		code: int = int((i * 55 / 6 % 4 + 2) * 100 + (i * 19 % 4))
@@ -69,7 +76,7 @@ def log_stream1(arg1: dict, arg2: list):
 
 def log_stream2(arg1: dict, arg2: list):
 	print('Starting stream 2')
-	for i in range(1000):
+	for i in tqdm(range(1000000), desc="Second Data Stream --> "):
 		ip: str = form_ip(i, 19, 256, 37, 250)
 		date: str = form_date(i, 1420063200, 2)
 		code: int = int((i * 8 / 6 % 4 + 2) * 100 + (i * 13 % 4))

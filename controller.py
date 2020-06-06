@@ -3,26 +3,39 @@
 
 from multiprocessing import (
 	Process,
-	Manager
+	Manager,
 )
 from st_logs import (
 	log_stream1,
-	log_stream2
+	log_stream2,
 )
 
 
-def count_uniq_ips(aata: dict):
-	pass
+def count_uniq_ips(data: dict):
+	for i in data:
+		print(f"Hours: {i}, uniq_value : {len(set(data[i]))}, Total Value : {len(data[i])}")
 
 
-def main():
+def main() -> dict:
 	manager = Manager()
 	shared_hour_list = manager.list()
 	shared_visitors_dict = manager.dict()
 
-	p1 = Process(target=log_stream1, args=(shared_visitors_dict, shared_hour_list))
-	p2 = Process(target=log_stream2, args=(shared_visitors_dict, shared_hour_list))
+	p1 = Process(
+		target=log_stream1,
+		args=(
+			shared_visitors_dict,
+			shared_hour_list
+		)
+	)
 	p1.start()
+	p2 = Process(
+		target=log_stream2,
+		args=(
+			shared_visitors_dict,
+			shared_hour_list
+		)
+	)
 	p2.start()
 	p1.join()
 	p2.join()
@@ -30,6 +43,4 @@ def main():
 
 
 if __name__ == '__main__':
-	visitors_dict = main()
-	for i in visitors_dict:
-		print(f"Hours: {i}, uniq_value : {len(set(visitors_dict[i]))}, Total Value : {len(visitors_dict[i])}")
+	count_uniq_ips(main())
