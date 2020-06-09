@@ -76,6 +76,65 @@ By default, the app does not create any Grafana dashboards. But we will create
 2 or 3 table dashboard to monitor unique ips per hour etc using sql queries.
 To make additional dashboards, see the Grafana 
 [documentation](https://grafana.com/docs/grafana/latest/features/datasources/mysql/#time-series-queries).
+<br>
+<br>![alt text](images/dashboard1.PNG)
+<br>
+<br>![alt text](images/dashboard2.PNG)
 
 
 
+##Usage
+
+
+* utils.py
+```
+Dependencies:
+    logging
+    sys
+    pathlib
+    pymysql
+```
+This module is responsible for little micro functions services mainly 
+such as setting up logging, db connections, topic dict etc.
+
+* DataStream_producer.py
+```
+Dependencies:
+    subprocess
+    ast
+    KafkaProducer
+    json
+```
+Kafka Producer reads stdout logs from logs.sh and pushes it to different topics.
+
+* DataStream_consumer.py
+```
+Dependencies:
+   KafkaConsumer
+   json
+   datetime
+```
+Kafka consumer which consumers and keeps track of data consumed from the producer.
+
+* logs.sh
+```
+Produces the logs consumed by kafka.
+```
+
+
+* grafana.sql
+```
+Contains some sql script for grafana dashboard to view
+tables in real time.
+```
+
+
+
+
+
+## Information
+Run the script as a module 
+- run : ` python -m CVShealth.controller `
+
+
+P.S : Dont hesitate to reach out if there is an issues.
