@@ -2,6 +2,7 @@ from kafka import KafkaProducer
 from json import dumps
 import subprocess
 import ast
+import sys
 from resources.utils import (
 	SCRIPTS_DIR,
 	topics,
@@ -48,15 +49,19 @@ def check_status_code(logs: dict):
 def main():
 	"""
 	Function streams bash stdout, checks the status code and sends each log to there respective topics
+	NOTE :
+	# On Windows - you should have (similar) C:user\programs\GIT\bin\bash.exe in your environmental
+	# variable if you wish to run the bash script
+	# I had to switch to log.py because it is way faster than the log.sh
+	# TO RUN THE log.sh CHANGE sys.executable -> "bash" and SCRIPTS_DIR / 'logs.sh' -> SCRIPTS_DIR / 'logs.py'
 	:return:
 	"""
-	# On Windows - you should have (similar) C:user\programs\GIT\bin\bash.exe in your environmental variable.
-	# Since I am using windows at the moment I already have it my path.
+
 	log_set.info("Reading Data From Bash STDOUT")
 	proc = subprocess.Popen(
 		[
-			"bash",
-			SCRIPTS_DIR / 'logs.sh'
+			sys.executable,
+			SCRIPTS_DIR / 'logs.py'
 		],
 		stdout=subprocess.PIPE
 	)

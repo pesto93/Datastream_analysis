@@ -1,14 +1,15 @@
 ## Data Stream with Kafka, MySQL and Grafana
+<br>
 
+![alt text](images/sketch.PNG)
+
+<br>
 Multi-container Docker app built from the following services:
 
 * [kafka/Zookeeper](https://kafka.apache.org/) - distributed streaming platform
 * [Adminer](https://www.adminer.org/) - admin UI for Databases
 * [Grafana](https://grafana.com/) - visualization UI
 * [MySQL](https://www.mysql.com/) - Database
-
-
-![alt text](CVSHealth_Logo.gif)
 
 
 ## Quick Start
@@ -75,11 +76,13 @@ Setup and save
 By default, the app does not create any Grafana dashboards. But we will create
 2 or 3 table dashboard to monitor unique ips per hour etc using sql queries.
 To make additional dashboards, see the Grafana 
-[documentation](https://grafana.com/docs/grafana/latest/features/datasources/mysql/#time-series-queries).
+[documentation](https://grafana.com/docs/grafana/latest/features/datasources/mysql/#time-series-queries)
+<br>or<br>
+[Youtube](https://www.youtube.com/watch?v=4qpI4T6_bUw&fbclid=IwAR3Qx-1hyKk3WQXNzywswMFT22aFquRyKzA227ykxJdNhh___-we0FkduEg)
 <br>
 <br>![alt text](images/dashboard1.PNG)
 <br>
-<br>![alt text](images/dashboard2.PNG)
+<br>![alt text](images/dashboard3.PNG)
 
 
 
@@ -116,9 +119,10 @@ Dependencies:
 ```
 Kafka consumer which consumers and keeps track of data consumed from the producer.
 
-* logs.sh
+* logs.sh/logs.py
 ```
-Produces the logs consumed by kafka.
+Produces the logs consumed by kafka. Both file produces same logs
+but the logs.py is faster.
 ```
 
 
@@ -132,7 +136,8 @@ tables in real time.
 
 
 
-## Information
+## Script Exec
+P.S - Make sure the docker container services started with grafana configured too
 Run the script as a module 
 - run : ` python -m CVShealth.controller `
 

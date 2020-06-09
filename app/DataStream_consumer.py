@@ -48,7 +48,7 @@ def consume_data(cur: cursors):
         auto_offset_reset='earliest',
         group_id="log_group",
         enable_auto_commit=True,
-        consumer_timeout_ms=10000,
+        consumer_timeout_ms=100000,
         value_deserializer=lambda x: loads(x.decode('utf-8')),
     )
     # consumer subscription happens here.
@@ -72,12 +72,12 @@ def create_log_table(cur):
                         CREATE TABLE IF NOT EXISTS logs (
                             date_time DATETIME,
                             ip VARCHAR (225),
-                            status_code VARCHAR (10),
+                            status_code INT,
                             date_ip VARCHAR (225),
                             hour int,
                             time TIME
                         )
-                        """
+        """
     )
 
 
