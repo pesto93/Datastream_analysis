@@ -138,8 +138,9 @@ tables in real time.
 
 ## Script Exec
 P.S - Make sure the docker container services started with grafana configured too
-Run the script as a module 
-- run : ` python -m CVShealth.controller `
+<br> Run the script as a module in two separate CMD line from the project root dir.
+- CMD1 : ` python -m app.DataStream_poducer.py`
+- CMD2 : ` python -m app.DataStream_consumer.py`
 
 
 P.S : Dont hesitate to reach out if there is an issues.
