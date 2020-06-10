@@ -20,12 +20,13 @@ To start the app:
 
 1. Install [docker/docker-compose](https://docs.docker.com/compose/install/).
 1. Install [Python](https://www.python.org/downloads/).
+1. Check if docker/docker-compose installed correctly
+    <br />. ```docker --version ```.
+    <br />. ```docker-compose --version ```.
 1. Clone this repo.
 1. Run the following command from the root of the cloned repo:
      <br /> . ```pip3 install -r requirements.txt (Python 3)``` to install python libs 
      for this project.
-     <br />. ```docker-compose up ``` to build docker containers.
-     <br />. ```docker-compose down ``` to stop docker containers.
 
 
 ## Ports
@@ -86,7 +87,7 @@ To make additional dashboards, see the Grafana
 
 
 
-##Usage
+## Usage
 
 
 * utils.py
@@ -133,14 +134,16 @@ tables in real time.
 ```
 
 
+## Script Execution
+To start the service and run the project simple open the `terminal` (Linux/Mac) 
+or `Git Bash`(for windows) on the `project root dir` exec the command below
+- run : ` bash run.sh`
+
+- To stop the process, kill the PID - `ps aux` and `kill PID`
+
+- Stop docker container - `docker-compose down` on the project root dir 
+ and `docker system prune -a` to remove all stopped containers.
 
 
 
-## Script Exec
-P.S - Make sure the docker container services started with grafana configured too
-<br> Run the script as a module in two separate CMD line from the project root dir.
-- CMD1 : ` python -m app.DataStream_poducer.py`
-- CMD2 : ` python -m app.DataStream_consumer.py`
-
-
-P.S : Dont hesitate to reach out if there is an issues.
+P.S - Dont hesitate to reach out on [linkedin](https://www.linkedin.com/in/johnleonard-onwuzuruigbo-9a10868a/) if there are any issues .
