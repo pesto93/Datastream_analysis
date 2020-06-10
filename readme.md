@@ -135,7 +135,11 @@ tables in real time.
 
 
 ## Script Execution
-<b> &#x1F499; 💙 NOTE - Project was developed and tested on windows &#x1F499; 💙</b> 
+<b> &#x1F499; 💙 NOTE - Project was developed and tested on windows but should work
+similarly with Linux and Mac, Just you may need to change Python to python3 if necessary
+&#x1F499; 💙
+</b> 
+
 <br>
 To start the service and run the project simple open the `terminal` (Linux/Mac) 
 or `Git Bash`(for windows) on the `project root dir` exec the command below

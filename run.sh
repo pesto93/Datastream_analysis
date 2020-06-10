@@ -17,7 +17,7 @@ echo                "                  |========================================
 
 docker-compose up &
 
-sleep 240
+sleep 200
 
 echo                "                  |=============================================|         "
 echo                "                  |              Starting Python                |         "
@@ -28,7 +28,7 @@ echo                "                  |========================================
 
 python -m app.DataStream_producer &
 
-sleep 30
+sleep 10
 
 echo                "                  |=============================================|         "
 echo                "                  |              Starting Python                |         "
