@@ -4,7 +4,7 @@
 import sys
 import logging
 from pathlib import Path
-from pymysql import Error, connect, cursors, connections
+from mysql.connector import connect, connection, cursor, Error
 
 
 def _configure_logger() -> logging.Logger:
@@ -25,7 +25,7 @@ def _configure_logger() -> logging.Logger:
     return logger
 
 
-def connection() -> tuple:
+def connections() -> tuple:
     """
     Functions handles mysql database connections
     :return: Mysql connection and cursor instance
@@ -36,10 +36,9 @@ def connection() -> tuple:
             user='user',
             password='userpass',
             db='log_stream',
-            charset='utf8mb4',
-            cursorclass=cursors.DictCursor
+            auth_plugin='mysql_native_password',
         )
-        conn.autocommit(True)
+        conn.autocommit= True
         log_set.info("Acquired Connection to Mysql DB")
         return conn, conn.cursor()
     except Error as e:
@@ -47,17 +46,17 @@ def connection() -> tuple:
 
 
 def close_connection(
-        conn: connections,
-        cursor: cursors
+        conn: connection,
+        cur: cursor
 ) -> None:
     """
     Function handle closing mysql connection
     :param conn: Mysql connection instance
-    :param cursor: Mysqlc cursor instance
+    :param cur: Mysqlc cursor instance
     :return:
     """
     conn.close()
-    cursor.close()
+    cur.close()
     log_set.info("MYSQL connection is closed")
 
 

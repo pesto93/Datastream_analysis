@@ -136,7 +136,8 @@ tables in real time.
 
 ## Script Execution
 <b> &#x1F499; 💙 NOTE - Project was developed and tested on windows but should work
-similarly with Linux and Mac, Just you may need to change Python to python3 if necessary
+similarly with Linux and Mac, Just you may need to change Python to Python3 
+ in - run.sh - if necessary
 &#x1F499; 💙
 </b> 
 

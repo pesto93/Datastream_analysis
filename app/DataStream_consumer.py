@@ -7,13 +7,13 @@ from datetime import datetime
 from resources.utils import (
     topics,
     close_connection,
-    connection,
+    connections,
     log_set,
-    cursors,
+    cursor,
 )
 
 
-def insert_log_db(cur: cursors, msg: dict):
+def insert_log_db(cur: cursor, msg: dict):
     """
     Function inserts consumed data into our database to load into grafana for almost real time analysis.
     :param cur: mysql cursor instance
@@ -33,7 +33,7 @@ def insert_log_db(cur: cursors, msg: dict):
     cur.execute(sql, val)
 
 
-def consume_data(cur: cursors):
+def consume_data(cur: cursor):
     """
     The function handles the kafka consumer instance.
     The messages published into topics are then utilized by Consumers apps.
@@ -61,7 +61,7 @@ def consume_data(cur: cursors):
     log_set.info("Closed Consumer after idling")
 
 
-def create_log_table(cur):
+def create_log_table(cur: cursor):
     """
     Function creates a new table if table do not already exist in MySQL database
     :param cur: mysql cursor instance
@@ -82,10 +82,10 @@ def create_log_table(cur):
 
 
 if __name__ == "__main__":
-    conn, cursor = connection()
+    conn, cursor = connections()
     create_log_table(cursor)
     consume_data(cursor)
     close_connection(
         conn=conn,
-        cursor=cursor
+        cur=cursor
     )
