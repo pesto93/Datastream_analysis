@@ -142,10 +142,11 @@ similarly with Linux and Mac, Just you may need to change Python to Python3
 </b> 
 
 - If you get an error ```No module name app``` - please use ```python3``` in ```run.sh```
-
 <br>
+
 To start the service and run the project simple open the `terminal` (Linux/Mac) 
-or `Git Bash`(for windows) on the `project root dir` exec the command below
+or `Git Bash`(for windows) on the `project root dir` exec the command below 
+
 - run : ` bash run.sh`
 
 - To stop the process, kill the PID - `ps aux` and `kill PID`
