@@ -10,6 +10,7 @@ Multi-container Docker app built from the following services:
 * [Adminer](https://www.adminer.org/) - admin UI for Databases
 * [Grafana](https://grafana.com/) - visualization UI
 * [MySQL](https://www.mysql.com/) - Database
+* [sonarqube](https://www.sonarqube.org/) - Code analysis platflorm (NOT IMPLEMENTED ATM)
 
 
 ## Quick Start
@@ -50,7 +51,7 @@ The service creates two admin users - one for MySQL and one for Grafana.
 - `GF_SECURITY_ADMIN_PASSWORD=admin`
 
 ## MySQL Database
-The service creates a default InfluxDB database called `log_stream`.
+The service creates a default database called `log_stream`.
 
 ## Adminer login
 [Adminer Page](http://localhost:8080/ ) and fill out the details
