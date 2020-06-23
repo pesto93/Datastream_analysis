@@ -13,7 +13,7 @@ from resources.utils import (
 # Producers are the apps responsible to publish data into Kafka system.
 # They publish data on the topic of their choice.
 producer = KafkaProducer(
-	bootstrap_servers='localhost:9092',
+	bootstrap_servers='localhost:9094',
 	value_serializer=lambda x: dumps(x).encode('utf-8')
 )
 

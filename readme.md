@@ -10,7 +10,8 @@ Multi-container Docker app built from the following services:
 * [Adminer](https://www.adminer.org/) - admin UI for Databases
 * [Grafana](https://grafana.com/) - visualization UI
 * [MySQL](https://www.mysql.com/) - Database
-* [sonarqube](https://www.sonarqube.org/) - Code analysis platflorm (NOT IMPLEMENTED ATM)
+* [Prometheus](https://prometheus.io/) - Used for collecting Kafka logs
+* [Sonarqube ](https://www.sonarqube.org/) - Code analysis platflorm (NOT IMPLEMENTED ATM)
 
 
 ## Quick Start
@@ -38,6 +39,7 @@ Host Port | Service
 ------------ | -------------
 | http://localhost:3000/      | Grafana       |
 |http://localhost:8080/       | Adminer       | 
+|http://localhost:9090/       | Prometheus    | 
 |:9092       | Kafka         | 
 
 ## Users
@@ -62,17 +64,23 @@ The service creates a default database called `log_stream`.
 ## Grafana
 Our grafana will be reading data from our mysql db in almost real time depending on the
 refresh rate.
-
-Check  [Grafana Page](http://localhost:3000/ ) and fill out the username and password.
-<br> click login and skip password change.
+Browse  [Grafana Page](http://localhost:3000/ ) and fill out the username and password 
+and add the datasource 
+for mysql and Prometheus as shown below. click login and skip password change.
 <br>
 <br>![alt text](images/grafana_login.PNG)
 <br>
 #### Grafana datasource setup
 Setup and save
+* MSQL DataSource
 <br>
 <br>![alt text](images/datasource.PNG)
 <br>
+* Prometheus DataSource
+<br>
+<br>![alt text](images/prom_datasource.PNG)
+<br>
+
 
 #### Grafana Dashboard
 By default, the app does not create any Grafana dashboards. But we will create
@@ -86,11 +94,22 @@ To make additional dashboards, see the Grafana
 <br>
 <br>![alt text](images/dashboard3.PNG)
 
+#### Plotting the monitoring visualization on Grafana (Prometheus)
+Now that we have configured Kafka JMX metrics to pipe into Prometheus, it's time to 
+visualize it in Grafana. 
+
+One way to create a dashboard in Grafana is to manually configure the panels one by one, 
+or to kickstart our process, we can download the pre-configured dashboard from the 
+[Download JSON](https://grafana.com/api/dashboards/721/revisions/1/download) 
+or get it from scripts dir and import it into your Grafana.
+
+<br>![alt text](images/imports.PNG)
+
+<br>![alt text](images/kafka_overview.PNG)
+
 
 
 ## Usage
-
-
 * utils.py
 ```
 Dependencies:

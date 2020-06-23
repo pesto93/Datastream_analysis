@@ -44,7 +44,7 @@ def consume_data(cur: cursor):
     :return:
     """
     consumer = KafkaConsumer(
-        bootstrap_servers='localhost:9092',
+        bootstrap_servers='localhost:9094',
         auto_offset_reset='earliest',
         group_id="log_group",
         enable_auto_commit=True,
