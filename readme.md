@@ -72,11 +72,14 @@ for mysql and Prometheus as shown below. click login and skip password change.
 <br>
 #### Grafana datasource setup
 Setup and save
-* MSQL DataSource
+<br>
+<br>
+```MSQL DataSource```
 <br>
 <br>![alt text](images/datasource.PNG)
 <br>
-* Prometheus DataSource
+<br>
+```Prometheus DataSource```
 <br>
 <br>![alt text](images/prom_datasource.PNG)
 <br>
