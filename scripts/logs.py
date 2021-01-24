@@ -16,11 +16,7 @@ def form_ip(i: int, x1: int, x2: int, y1: int, y2: int) -> str:
 	return f"10.0.{i * x1 % x2}.{i * y1 % y2}"
 
 
-def form_date(
-		i: int,
-		time_int: int,
-		option: Optional[int] = None
-) -> str:
+def form_date(i: int, time_int: int, option: Optional[int] = None) -> str:
 	"""
 	Function forms the date for logs
 	:param i: loop int passed from run_loop method
@@ -29,16 +25,14 @@ def form_date(
 	:return:
 	"""
 	if option:
-		return datetime.fromtimestamp(time_int + i * option).strftime("%Y-%m-%d %H:%M:%S")
+		return datetime.fromtimestamp(time_int + i * option).strftime(
+			"%Y-%m-%d %H:%M:%S"
+		)
 	else:
 		return datetime.fromtimestamp(time_int + i).strftime("%Y-%m-%d %H:%M:%S")
 
 
-def stdout(
-		date: str,
-		ip: str,
-		code: int
-):
+def stdout(date: str, ip: str, code: int):
 	"""
 	print formed log to stdout
 	:param date: log time
@@ -81,8 +75,6 @@ def run_loop():
 
 
 if __name__ == "__main__":
-	p1 = Process(
-		target=run_loop,
-	)
+	p1 = Process(target=run_loop, )
 	p1.start()
 	p1.join()

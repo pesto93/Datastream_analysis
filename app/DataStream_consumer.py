@@ -22,12 +22,12 @@ def insert_log_db(cur: cursor, msg: dict):
     """
     sql = "INSERT INTO logs (date_time, ip, status_code, date_ip, hour, time) VALUES (%s, %s, %s, %s, %s, %s)"
     val = (
-        datetime.strptime(msg.get('time'), "%Y-%m-%d %H:%M:%S"),
-        msg.get('ip'),
-        msg.get('status_code'),
-        msg.get('time').split(' ')[0] + "_" + msg.get('ip'),
-        (msg.get('time').split(' ')[1]).split(':')[0],
-        datetime.strptime(msg.get('time'), "%Y-%m-%d %H:%M:%S").time()
+        datetime.strptime(msg.get("time"), "%Y-%m-%d %H:%M:%S"),
+        msg.get("ip"),
+        msg.get("status_code"),
+        msg.get("time").split(" ")[0] + "_" + msg.get("ip"),
+        (msg.get("time").split(" ")[1]).split(":")[0],
+        datetime.strptime(msg.get("time"), "%Y-%m-%d %H:%M:%S").time(),
     )
     # log_set.info(f"INSERT INTO logs {val}")
     cur.execute(sql, val)
@@ -44,12 +44,12 @@ def consume_data(cur: cursor):
     :return:
     """
     consumer = KafkaConsumer(
-        bootstrap_servers='localhost:9094',
-        auto_offset_reset='earliest',
+        bootstrap_servers="localhost:9094",
+        auto_offset_reset="earliest",
         group_id="log_group",
         enable_auto_commit=True,
         consumer_timeout_ms=100000,
-        value_deserializer=lambda x: loads(x.decode('utf-8')),
+        value_deserializer=lambda x: loads(x.decode("utf-8")),
     )
     # consumer subscription happens here.
     consumer.subscribe(topics.get("500"))
@@ -85,7 +85,4 @@ if __name__ == "__main__":
     conn, cursor = connections()
     create_log_table(cursor)
     consume_data(cursor)
-    close_connection(
-        conn=conn,
-        cur=cursor
-    )
+    close_connection(conn=conn, cur=cursor)

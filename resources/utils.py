@@ -32,23 +32,20 @@ def connections() -> tuple:
     """
     try:
         conn = connect(
-            host='localhost',
-            user='user',
-            password='userpass',
-            db='log_stream',
-            auth_plugin='mysql_native_password',
+            host="localhost",
+            user="user",
+            password="userpass",
+            db="log_stream",
+            auth_plugin="mysql_native_password",
         )
-        conn.autocommit= True
+        conn.autocommit = True
         log_set.info("Acquired Connection to Mysql DB")
         return conn, conn.cursor()
     except Error as e:
         log_set.info(f"Error connecting to MYSQL Platform: {e}")
 
 
-def close_connection(
-        conn: connection,
-        cur: cursor
-) -> None:
+def close_connection(conn: connection, cur: cursor) -> None:
     """
     Function handle closing mysql connection
     :param conn: Mysql connection instance
@@ -81,4 +78,3 @@ topics = {
 #########
 BASE_DIRECTORY = Path(__file__).resolve().parent.parent
 SCRIPTS_DIR: Path = BASE_DIRECTORY / "scripts"
-
